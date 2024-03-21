@@ -21,7 +21,7 @@ const displayPhones =phones =>{
     phones=phones.slice(0,10)
     
     phones.forEach(phone => {
-       console.log(phone) 
+    //    console.log(phone) 
        //step 1..create a div
        const phoneCard=document.createElement('div')
 
@@ -34,7 +34,7 @@ const displayPhones =phones =>{
          <h2 class="card-title">${phone.phone_name}</h2>
          <p>If a dog chews shoes whose shoes does he choose?</p>
          <div class="card-actions justify-center">
-           <button class="btn btn-primary">Show Details</button>
+        <button onclick="handleShowDetail('${phone.slug}');show_details_modal.showModal()" class="btn btn-primary">Show Details</button>
        `
        //step 3..appendChild
      phoneContainer.appendChild(phoneCard)
@@ -50,8 +50,30 @@ searchText=searchField.value ;
 console.log(searchText)
 loadPhone(searchText)
 }
+//Handle show details function
+const handleShowDetail= async (id)=>{
+    console.log('clicked Show details',id)
+    //load single phone data
+    const res=await fetch(`https://openapi.programming-hero.com/api/phone/${id}`)
+    const data = await res.json();
+    const phone =data.data
+    showPhoneDetails(phone)
+    
+}
+//show the modal
+const showPhoneDetails =(phone)=>{
+    console.log(phone)
+    const phoneName=document.getElementById('show-detail-phone-name')
+    phoneName.innerText=phone.name;
+    const showDetailContainer=document.getElementById('show-detail-container');
+    showDetailContainer.innerHTML=`
+    <img src="${phone.image}" />
+    <p><span>Storage :</span>${phone.mainFeature.storage}</p>
+    `
+    show_details_modal.showModal()
+}
 
-//
+//toggle function
 const toggleLoadingSpinner =(isLoading)=>{
     const loadingSpinner=document.getElementById('loading-spinner')
    if(isLoading){
