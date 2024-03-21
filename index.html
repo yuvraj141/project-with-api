@@ -11,19 +11,24 @@
 </head>
 <body>
     <h1 class="text-3xl">hunting phone</h1>
+
 <section class="container mx-auto mt-10">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5" id="phone-container">
-        <!-- <div class="card card-compact w-96 bg-base-100 shadow-xl">
-            <figure><img src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" /></figure>
-            <div class="card-body">
-              <h2 class="card-title">Shoes!</h2>
-              <p>If a dog chews shoes whose shoes does he choose?</p>
-              <div class="card-actions justify-end">
-                <button class="btn btn-primary">Buy Now</button>
-              </div>
-            </div> -->
-          </div>
+    <!-- search option -->
+    <section class="bg-black m-5 p-5">
+        <input id="search-field" type="text" placeholder="Search here" class="input input-bordered w-full max-w-xs" />
+        <button onclick="handleSearch()" class="btn btn-accent">Search</button>
+    </section>
+    <!-- loader or spinner -->
+    <div id="loading-spinner" class="text-center hidden">
+        <span class="loading loading-ring text-center my-10 loading-lg"></span>
     </div>
+    <!-- cards handled by js-->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5" id="phone-container">
+          </div>
+          <!-- show All button -->
+          <div id="show-all-container" class="hidden text-center my-8">
+            <button class="btn btn-accent">Show All</button>
+          </div>
 </section>
     <!-- script -->
     <script src="scripts/phone.js"></script>
